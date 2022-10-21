@@ -1,43 +1,47 @@
 import React, { memo, useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import Loader from "../components/Loader";
 import Pagination from "../components/Pagination";
+import UserCard from "../components/UserCard";
 import { useFetch } from "../Hooks/useFetchUrl";
 const Users = () => {
-	// const { state } = useLocation();
-
+	const { no } = useParams();
 	const { loading, data, error } = useFetch(
-		"https://randomuser.me/api/?results=50&seed=abc"
+		`https://randomuser.me/api/?gender=male&results=${no}&seed=abc}`
 	);
 
 	const [page, setPage] = useState(1);
 	const [totalPages, setTotalPages] = useState(0);
-	const usersPerPage = 5;
+	const usersPerPage = 8;
 	const currIndex = (page - 1) * usersPerPage;
-	const fetchFrom = data.slice(currIndex, page * usersPerPage);
+	const users = data.slice(currIndex, page * usersPerPage);
+
 	useEffect(() => {
 		setTotalPages(Math.ceil(data?.length / usersPerPage));
 	}, [data]);
 	return (
 		<div>
-			<div>
-				{page} of {totalPages}
-			</div>
+			{totalPages > 1 && (
+				<div className='pb-8'>
+					{page} of {totalPages}
+				</div>
+			)}
 			{loading ? (
 				<Loader />
 			) : error ? (
 				<h1>{error}</h1>
 			) : (
-				fetchFrom?.map((item) => (
-					<Link
-						// to={`/user/${item.login.uuid}`}
-						state={item}
-						key={item.login.uuid}>
-						<h1>{item.name.first}</h1>
-					</Link>
-				))
+				<div className='grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4'>
+					{users?.map((item) => (
+						<div key={item.login.uuid} className='flex'>
+							<UserCard {...item} item={item} />
+						</div>
+					))}
+				</div>
 			)}
-			<Pagination page={page} setPage={setPage} totalPages={totalPages} />
+			{totalPages > 1 && (
+				<Pagination page={page} setPage={setPage} totalPages={totalPages} />
+			)}
 		</div>
 	);
 };

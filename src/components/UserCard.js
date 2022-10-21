@@ -18,15 +18,15 @@ const UserCard = ({ name, picture, email, gender, phone, item }) => {
 			<h1 className='font-bold text-center text-gray-700'>{`${first} ${last}`}</h1>
 			<div className='flex justify-center items-center gap-1 text-center font-semibold text-[14px] text-gray-500'>
 				<MdOutlineMail />
-				<h2 className=''>{email}</h2>
+				<h2>{email}</h2>
 			</div>
 			<div className='flex justify-center items-center gap-1 text-center font-semibold text-[14px] text-gray-500'>
 				{genderIcon}
-				<h2 className=''>{gender}</h2>
+				<h2>{gender}</h2>
 			</div>
 			<div className='flex pb-2 justify-center items-center gap-1 text-center font-semibold text-[14px] text-gray-500'>
 				<BiPhone />
-				<h2 className=''>{phone}</h2>
+				<h2>{phone}</h2>
 			</div>
 
 			<Link

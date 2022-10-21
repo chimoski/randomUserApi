@@ -12,7 +12,7 @@ function App() {
 					<Route path='*' element={<ErrorPage />} />
 					<Route path='/' element={<Home />}>
 						<Route index element={<Featured />} />
-						<Route path='users' element={<Users />} />
+						<Route path='users/:no' element={<Users />} />
 					</Route>
 					<Route path='/user/:id' element={<User />} />
 				</Routes>

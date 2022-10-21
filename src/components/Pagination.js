@@ -3,19 +3,33 @@ import React from "react";
 const Pagination = ({ page, setPage, totalPages }) => {
 	const pageNumber = Array.from({ length: totalPages }, (_, i) => i + 1);
 	return (
-		<div>
-			<button disabled={page === 1} onClick={() => setPage(page - 1)}>
+		<div className='flex justify-between px-5 md:px-0 mb-5 md:mb-0'>
+			<button
+				className={`rounded w-[50px] h-[50px] bg-blue-500 text-white px-2 py-1 ${
+					page === 1 && "bg-gray-500"
+				}`}
+				disabled={page === 1}
+				onClick={() => setPage(page - 1)}>
 				prev
 			</button>
-			{pageNumber.map((item) => (
-				<button
-					key={item}
-					onClick={() => setPage(item)}
-					className={`${page === item && "active"}`}>
-					{item}
-				</button>
-			))}
-			<button disabled={page === totalPages} onClick={() => setPage(page + 1)}>
+			<div className='flex flex-wrap px-2 gap-2  justify-between'>
+				{pageNumber.map((item) => (
+					<button
+						key={item}
+						onClick={() => setPage(item)}
+						className={` rounded bg-gray-500 w-[40px] h-[40px] text-white px-2 py-1 mr-1 ${
+							page === item && "active"
+						}`}>
+						{item}
+					</button>
+				))}
+			</div>
+			<button
+				className={`rounded  h-[50px] w-[50px] bg-blue-500 text-white px-2 py-1 ${
+					page === totalPages && "bg-gray-500"
+				}`}
+				disabled={page === totalPages}
+				onClick={() => setPage(page + 1)}>
 				next
 			</button>
 		</div>

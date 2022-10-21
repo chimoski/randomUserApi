@@ -22,11 +22,7 @@ const Featured = () => {
 					<h1>{error}</h1>
 				) : (
 					data?.map((item) => (
-						<div
-							className=''
-							// to={`/user/${item.login.uuid}`}
-							// state={item}
-							key={item.login.uuid}>
+						<div key={item.login.uuid}>
 							<UserCard {...item} item={item} />
 						</div>
 					))
