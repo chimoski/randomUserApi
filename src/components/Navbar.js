@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import logo from "../assets//Altschool logo.svg";
 import { HiOutlineSearch } from "react-icons/hi";
 import FindUser from "./FindUser";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
 	const [search, setSearch] = useState(null);
@@ -15,11 +16,12 @@ const Navbar = () => {
 		if (!search || search === "") setsetshowIcon(true);
 		setshowSearch(false);
 	};
+	const navigate = useNavigate();
 	return (
 		<div>
 			<div className='pr-2 flex items-center text-gray-500 justify-between  my-3'>
-				<div className='flex items-center gap-5 '>
-					<img src={logo} alt='' />
+				<div className='flex items-center gap-5 ' onClick={() => navigate("/")}>
+					<img src={logo} alt='' className='cursor-pointer' />
 					<p className={`font-bold text-[14px] ${showSearch && "hidden"}`}>
 						Random Users
 					</p>
@@ -43,6 +45,7 @@ const Navbar = () => {
 							} py-1 outline-none `}
 							placeholder='search user'
 						/>
+
 						{setshowIcon && (
 							<HiOutlineSearch className='absolute top-[11px] left-1' />
 						)}
