@@ -13,14 +13,14 @@ export const useFetch = (url) => {
 			if (error.name === "AbortError") {
 				setError("Fetch aborted");
 			}
-			if (error.name === "TypeError") {
-				setError("Invalid URL");
-			}
+
 			if (error.name === "SyntaxError") {
 				setError("Invalid JSON");
 			}
 			if (error.name === "ReferenceError") {
 				setError("Invalid data");
+			} else {
+				setError(error.message);
 			}
 		} finally {
 			setLoading(false);

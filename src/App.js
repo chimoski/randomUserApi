@@ -13,8 +13,8 @@ function App() {
 					<Route path='/' element={<Home />}>
 						<Route index element={<Featured />} />
 						<Route path='users/:no' element={<Users />} />
+						<Route path='user/:id' element={<User />} />
 					</Route>
-					<Route path='/user/:id' element={<User />} />
 				</Routes>
 			</Router>
 		</div>
