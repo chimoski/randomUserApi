@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import Loader from "../components/Loader";
 import UserCard from "../components/UserCard";
 import { useFetch } from "../Hooks/useFetchUrl";
@@ -19,7 +18,7 @@ const Featured = () => {
 				{loading ? (
 					<Loader />
 				) : error ? (
-					<h1>{error}</h1>
+					<h1 className='text-red-500 text-center'>{error}</h1>
 				) : (
 					data?.map((item) => (
 						<div key={item.login.uuid}>

@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import DropDown from "./DropDown";
 import { IoClose } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 
 const FindUser = ({ setshowFindUser }) => {
-	// const [selected, setSelected] = useState("Select");
 	const [noUsers, setNoOfUsers] = useState(1);
 	const navigate = useNavigate();
 	const handleClick = () => {
